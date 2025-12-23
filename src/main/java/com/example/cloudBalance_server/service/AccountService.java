@@ -5,8 +5,9 @@ import com.example.cloudBalance_server.dto.AccountResponseDTO;
 import com.example.cloudBalance_server.entity.Account;
 import com.example.cloudBalance_server.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AccountService {
@@ -28,5 +29,9 @@ public class AccountService {
         accountResponseDTO.setAccountId(newAcc.getAccountId());
 
         return accountResponseDTO;
+    }
+
+    public List<Account> getAllAccounts(){
+        return accountRepository.findAll();
     }
 }
