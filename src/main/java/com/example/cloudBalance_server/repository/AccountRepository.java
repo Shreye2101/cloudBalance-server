@@ -1,4 +1,8 @@
 package com.example.cloudBalance_server.repository;
 
-public interface AccountRepository {
+import com.example.cloudBalance_server.entity.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AccountRepository extends JpaRepository<Account,Long> {
+
 }

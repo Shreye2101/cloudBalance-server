@@ -13,8 +13,8 @@ import lombok.*;
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "account_id")
+    private Integer accountId;
 
     @Column(nullable = false)
     private String accountName;
@@ -22,6 +22,7 @@ public class Account {
     @Column(nullable = false, unique = true)
     private String accountArn;
 
+    @Builder.Default
     @Column(nullable = false)
     private String accountStatus = "ORPHAN";
 }
