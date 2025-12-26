@@ -25,4 +25,6 @@ public class Account {
     @Builder.Default
     @Column(nullable = false)
     private String accountStatus = "ORPHAN";
+
+
 }
