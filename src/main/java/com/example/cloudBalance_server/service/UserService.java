@@ -1,24 +1,22 @@
 package com.example.cloudBalance_server.service;
 
 import com.example.cloudBalance_server.dto.UserRequestDTO;
-import com.example.cloudBalance_server.dto.UserResponseDTO;
 import com.example.cloudBalance_server.entity.User;
-import com.example.cloudBalance_server.exception.ResourceNotFoundException;
+import com.example.cloudBalance_server.exception.UserNotFound;
 import com.example.cloudBalance_server.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
-    @Autowired
-    private UserRepository repo;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final UserRepository repo;
+    private final PasswordEncoder passwordEncoder;
 
     public String addUser(UserRequestDTO dto) {
 
@@ -48,7 +46,7 @@ public class UserService {
     public User updateUser(Long id, UserRequestDTO userDto) {
 
         User existingUser = repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFound("User not found"));
 
         existingUser.setFirstName(userDto.getFirstName());
         existingUser.setLastName(userDto.getLastName());
@@ -56,6 +54,7 @@ public class UserService {
 
         return repo.save(existingUser);
     }
+
 }
 
 
