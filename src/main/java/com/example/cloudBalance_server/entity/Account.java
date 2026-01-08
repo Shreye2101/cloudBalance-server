@@ -5,11 +5,9 @@ import lombok.*;
 
 @Entity
 @Table(name = "accounts")
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Account {
 
     @Id
@@ -22,9 +20,7 @@ public class Account {
     @Column(nullable = false, unique = true)
     private String accountArn;
 
-    @Builder.Default
     @Column(nullable = false)
     private String accountStatus = "ORPHAN";
-
 
 }
